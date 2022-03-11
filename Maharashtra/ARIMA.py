@@ -97,7 +97,7 @@ def save_results(AIC_scores_list, SOURCE_FOLDER):
     AIC_scores = pd.DataFrame.from_records(AIC_scores_list)
     AIC_scores.columns=['p', 'd', 'q', 'P', 'D', 'Q', 's', 'AIC']
     AIC_scores.to_csv(SOURCE_FOLDER + '/' + 'ARIMA_information.csv')
-    optimized_values_ARIMA = AIC_scores.iloc[AIC_scores['AIC'].argmin()]
+    optimized_values_ARIMA = AIC_scores.loc[AIC_scores['AIC'].argmin()]
     optimized_values_ARIMA.to_csv(SOURCE_FOLDER + '/' + 'ARIMA_optimized_values.csv')
 
 

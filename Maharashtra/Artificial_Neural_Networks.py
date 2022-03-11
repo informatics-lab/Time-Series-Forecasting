@@ -53,8 +53,8 @@ def preprocess_data(filename):
     rainfall_data = pd.DataFrame({'Precipitation': rainfall_data_matrix_np[:,0]})
     rainfall_data.set_index(dates, inplace=True)
 
-    test_rainfall_data = rainfall_data.ix['1998': '2002']
-    rainfall_data = rainfall_data.ix[: '1998']
+    test_rainfall_data = rainfall_data.loc['1998': '2002']
+    rainfall_data = rainfall_data.loc[: '1998']
     rainfall_data = rainfall_data.round(5)
     
     scaler = MinMaxScaler(feature_range=(0, 1))
@@ -222,7 +222,7 @@ def get_accuracies_FNN(rainfall_data, test_rainfall_data, parameters, scaler):
 
         model_FNN, forecasted_values_FNN = FNN(rainfall_data, look_back, hidden_nodes, output_nodes, epochs, batch_size, future_steps, scaler)
         
-        y_true = test_rainfall_data.ix[:future_steps].Precipitation
+        y_true = test_rainfall_data.iloc[:future_steps].Precipitation
         mse, mae, mape, rmse, corr_coef = calculate_performance(y_true, forecasted_values_FNN)
         
         info = list(param) + [mse, mae, mape, rmse, corr_coef] + forecasted_values_FNN
@@ -309,7 +309,7 @@ def get_accuracies_TLNN(rainfall_data, test_rainfall_data, parameters, scaler):
 
         model_TLNN, forecasted_values_TLNN = TLNN(rainfall_data, time_lagged_points, hidden_nodes, output_nodes, epochs, batch_size, future_steps, scaler)
         
-        y_true = test_rainfall_data.ix[:future_steps].Precipitation
+        y_true = test_rainfall_data.iloc[:future_steps].Precipitation
         mse, mae, mape, rmse, corr_coef = calculate_performance(y_true, forecasted_values_TLNN)
         
         info = list(param) + [mse, mae, mape, rmse, corr_coef] + forecasted_values_TLNN
@@ -393,7 +393,7 @@ def get_accuracies_SANN(rainfall_data, test_rainfall_data, parameters, scaler):
 
         model_SANN, forecasted_values_SANN = SANN(rainfall_data, seasonal_period, hidden_nodes, epochs, batch_size, future_steps, scaler)
         
-        y_true = test_rainfall_data.ix[:future_steps].Precipitation
+        y_true = test_rainfall_data.iloc[:future_steps].Precipitation
         mse, mae, mape, rmse, corr_coef = calculate_performance(y_true, forecasted_values_SANN)
         
         info = list(param) + [mse, mae, mape, rmse, corr_coef] + forecasted_values_SANN
@@ -489,7 +489,7 @@ def get_accuracies_RNN(rainfall_data, test_rainfall_data, parameters, scaler):
 
         model_RNN, forecasted_values_RNN = Recurrent_Neural_Network(rainfall_data, input_nodes, hidden_nodes, output_nodes, epochs, batch_size, future_steps, scaler)
         
-        y_true = test_rainfall_data.ix[:future_steps].Precipitation
+        y_true = test_rainfall_data.iloc[:future_steps].Precipitation
         mse, mae, mape, rmse, corr_coef = calculate_performance(y_true, forecasted_values_RNN)
         
         info = list(param) + [mse, mae, mape, rmse, corr_coef] + forecasted_values_RNN
@@ -588,7 +588,7 @@ def get_accuracies_LSTM(rainfall_data, test_rainfall_data, parameters, scaler):
 
         model_LSTM, forecasted_values_LSTM = Long_Short_Term_Memory(rainfall_data, input_nodes, hidden_nodes, output_nodes, epochs, batch_size, future_steps, scaler)
         
-        y_true = test_rainfall_data.ix[:future_steps].Precipitation
+        y_true = test_rainfall_data.iloc[:future_steps].Precipitation
         mse, mae, mape, rmse, corr_coef = calculate_performance(y_true, forecasted_values_LSTM)
         
         info = list(param) + [mse, mae, mape, rmse, corr_coef] + forecasted_values_LSTM
@@ -607,7 +607,7 @@ def analyze_results(data_frame, test_rainfall_data, name, STORAGE_FOLDER, flag=F
     optimized_params = data_frame.iloc[data_frame.RMSE.argmin]
     future_steps = optimized_params.future_steps
     forecast_values = optimized_params[-1*int(future_steps):]
-    y_true = test_rainfall_data.ix[:int(future_steps)]
+    y_true = test_rainfall_data.iloc[:int(future_steps)]
     forecast_values.index = y_true.index
         
     print('=== Best parameters of ' + name + ' ===\n')

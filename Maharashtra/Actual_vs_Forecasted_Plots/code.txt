@@ -42,7 +42,7 @@ for date in ordered_date_keys:
             if district not in df.index:
                 color = '#dddddd'
             else:
-                a_color = a_scheme[int(df.ix[district]['abin'])]
+                a_color = a_scheme[int(df.iloc[district]['abin'])]
                 patches.append( Polygon(np.array(shape), True))
                 facecolor_array.append(a_color)
                 
@@ -61,7 +61,7 @@ for date in ordered_date_keys:
     X,Y = map(lon,lat)
     ax.scatter(X,Y)
     for i, (x, y) in enumerate(zip(X, Y), start=0):
-        actual = df.ix[label_district[i]]['Actual'] 
+        actual = df.iloc[label_district[i]]['Actual'] 
         ax.annotate(label_dist[i]+"\n"+str(round(actual,2)), (x,y), xytext=(0,0), textcoords='offset points',fontsize=12,color='black')
     
     ax_legend = fig.add_axes([0.40, 0.20, 0.3, 0.03], zorder=3)
@@ -89,7 +89,7 @@ for date in ordered_date_keys:
             if district not in df.index:
                 color = '#dddddd'
             else:
-                f_color = f_scheme[int(df.ix[district]['fbin'])]
+                f_color = f_scheme[int(df.iloc[district]['fbin'])]
                 patches.append( Polygon(np.array(shape), True))
                 facecolor_array.append(f_color)
         else:
@@ -101,7 +101,7 @@ for date in ordered_date_keys:
     X,Y = map(lon,lat)
     ax.scatter(X,Y)
     for i, (x, y) in enumerate(zip(X, Y), start=0):
-        forecast = df.ix[label_district[i]]['Forecast'] 
+        forecast = df.iloc[label_district[i]]['Forecast'] 
         ax.annotate(label_dist[i]+"\n"+str(round(forecast,2)), (x,y), xytext=(0,0), textcoords='offset points',fontsize=12,color='black')
         
     ax_legend = fig.add_axes([0.45, 0.20, 0.3, 0.03], zorder=3)
