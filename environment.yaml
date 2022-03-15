@@ -1,0 +1,20 @@
+name: time-series-forecast
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - tensorflow
+  - plotly
+  - statsmodels
+  - seaborn
+  - basemap
+  - pandas
+  - jupyter
+  - scikit-learn
+  - jupyterlab
+  - ca-certificates
+  - certifi
+  - openssl
+  - pydot
+  - graphviz
+prefix: /Users/kevin.donkers/opt/miniconda3/envs/time-series-forecast
