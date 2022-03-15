@@ -1,7 +1,6 @@
 name: time-series-forecast
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - tensorflow
   - plotly
@@ -17,4 +16,4 @@ dependencies:
   - openssl
   - pydot
   - graphviz
-prefix: /Users/kevin.donkers/opt/miniconda3/envs/time-series-forecast
+
