@@ -1,0 +1,19 @@
+name: time-series-forecast
+channels:
+  - conda-forge
+dependencies:
+  - tensorflow
+  - plotly
+  - statsmodels
+  - seaborn
+  - basemap
+  - pandas
+  - jupyter
+  - scikit-learn
+  - jupyterlab
+  - ca-certificates
+  - certifi
+  - openssl
+  - pydot
+  - graphviz
+
